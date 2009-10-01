@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans>
+
+    <form-bean       name="testForm"
+                     type="org.apache.struts.action.DynaActionForm">
+      <form-property name="value1" type="java.lang.String"/>
+      <form-property name="value2" type="java.lang.String"/>
+    </form-bean>
+
+  </form-beans>
+
+  <!-- ========== Global Forward Definitions ============================== -->
+  <global-forwards>
+
+    <forward   name="goToDefaultModule"  contextRelative="true"
+               path="/showIndex.do"/>
+
+    <forward   name="goToDefaultModule_forward_calling_action" 
+               path="/switchToDefaultModule.do?prefix=&amp;page=/index.jsp"/>
+
+  </global-forwards>
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings>
+
+    <action    path="/switchToDefaultModule"
+               type="org.apache.struts.actions.SwitchAction"
+               name="testForm">
+    </action>
+
+
+    <action    path="/showIndex"
+               forward="/index.jsp"/>
+
+  </action-mappings>
+
+  <controller>
+    <!-- The "input" parameter on "action" elements is the name of a
+         local or global "forward" rather than a module-relative path -->
+    <set-property property="inputForward" value="true"/>
+  </controller>
+
+  <!-- ========== Message Resources Definitions =========================== -->
+
+  <message-resources parameter="mod1-resources"/>
+
+  <!-- ========== Plug Ins Configuration ================================== -->
+
+
+</struts-config>
+
